@@ -1,0 +1,10 @@
+.local/
+.objects/
+.settings/
+.tmp/
+.tmh/
+.project/
+.entities/
+.templates/
+*.log
+~$*.xlsx
