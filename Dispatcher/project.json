@@ -1,7 +1,7 @@
 {
   "name": "Juridico_MonitorPrazos_Dispatcher",
   "projectId": "cff84dac-68a7-472a-a57e-98190e8a44ac",
-  "description": "Lê publicações do DJe, resolve prazos não críticos automaticamente e envia os críticos para a fila",
+  "description": "Reads DJe court publications, logs non-critical deadlines automatically and sends critical ones to the Orchestrator queue",
   "main": "Main.xaml",
   "dependencies": {
     "UiPath.Azure.Activities": "[1.6.3]",

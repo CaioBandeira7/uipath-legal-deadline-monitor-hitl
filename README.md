@@ -1,101 +1,84 @@
-# Monitor de Prazos Jurídicos com Human-in-the-Loop (UiPath)
+# Legal Deadline Monitor with Human-in-the-Loop (UiPath)
 
-> 🇧🇷 Português · [🇺🇸 English below](#english)
+A UiPath automation that reads court publications from Brazil's electronic Official Gazette (DJe), **resolves routine deadlines on its own and sends only the critical ones to a lawyer for confirmation** in UiPath Action Center before recording them in the deadline tracker.
 
-Automação em UiPath que lê publicações do Diário de Justiça Eletrônico (DJe), resolve sozinha os prazos de rotina e **envia apenas os prazos críticos para um advogado confirmar** no UiPath Action Center antes de registrar no controle de prazos.
+The robot handles the repetitive work. Decisions that carry legal risk stay with a person.
 
-A ideia é simples: o robô faz o trabalho repetitivo, e a decisão jurídica que tem risco fica com uma pessoa.
+## The problem
 
-## O problema
+Law firms and legal departments receive dozens of court publications every day. Each one must be read, its deadline calculated and the result logged in a tracking spreadsheet. Doing this by hand takes hours, and one missed deadline can cost a case. Fully automating it is risky too, because some deadlines (judgments, appeals, doubled deadlines) need a lawyer's interpretation.
 
-Escritórios e departamentos jurídicos recebem dezenas de publicações por dia. Cada uma precisa ser lida, ter o prazo calculado e ser lançada numa planilha de controle. Fazer isso à mão toma horas e um erro de prazo pode custar um processo. Automatizar tudo também é arriscado: alguns prazos (sentenças, recursos, prazos em dobro) exigem a interpretação de um advogado.
+## The solution
 
-## A solução
-
-Arquitetura **Dispatcher / Performer** com uma fila no Orchestrator e uma etapa de aprovação humana:
+A **Dispatcher / Performer** architecture with an Orchestrator queue and a human approval step:
 
 ```mermaid
 flowchart LR
-    A[Planilha de publicações do DJe] --> B[Dispatcher]
-    B --> C{Prazo crítico?}
-    C -- Não --> D[Registra automaticamente<br/>no Controle de Prazos]
-    C -- Sim --> E[(Fila no Orchestrator<br/>Fila_Prazos_Juridico)]
+    A[DJe publications workbook] --> B[Dispatcher]
+    B --> C{Critical deadline?}
+    C -- No --> D[Logged automatically<br/>in the deadline tracker]
+    C -- Yes --> E[(Orchestrator queue<br/>Fila_Prazos_Juridico)]
     E --> F[Performer]
-    F --> G[Tarefa no Action Center<br/>para o advogado]
-    G --> H[Advogado confirma ou ajusta<br/>o prazo e decide]
-    H --> I[Registra no Controle de Prazos<br/>com a decisão e a data]
+    F --> G[Action Center task<br/>for the lawyer]
+    G --> H[Lawyer confirms or adjusts<br/>the deadline and decides]
+    H --> I[Logged in the deadline tracker<br/>with decision and timestamp]
 ```
 
 **Dispatcher** (`/Dispatcher`)
-1. Lê as publicações da aba `Publicacoes_DJe`.
-2. Para cada publicação:
-   - **não crítica** → registra direto no controle como "Automático (robô)";
-   - **crítica** → cria um item na fila `Fila_Prazos_Juridico` com número do processo, trecho da publicação e prazo calculado.
-3. Grava os registros automáticos na aba `Prazos` do `Controle_Prazos.xlsx`.
+1. Reads the publications from the `Publicacoes_DJe` sheet.
+2. For each publication:
+   - **non-critical**: logs it directly in the tracker with source "Automático (robô)";
+   - **critical**: adds an item to the `Fila_Prazos_Juridico` queue with the case number, the publication excerpt and the calculated deadline.
+3. Appends the automatic entries to the `Prazos` sheet of `Controle_Prazos.xlsx`.
 
 **Performer** (`/Performer`)
-1. Pega o próximo item da fila (`Get Transaction Item`).
-2. Cria uma **Form Task no Action Center** com o número do processo, o trecho da publicação e o prazo sugerido.
-3. O robô **pausa** (`Wait for Form Task and Resume`) até o advogado responder. Ele confirma o prazo em dias e escolhe a decisão: *Confirmar prazo*, *Ajustar prazo* ou *Não abre prazo*.
-4. Registra a resposta no controle com origem "Advogado (Action Center)", data e hora.
-5. Marca a transação como concluída (`Set Transaction Status`).
+1. Gets the next queue item (`Get Transaction Item`).
+2. Creates an **Action Center Form Task** with the case number, the publication excerpt and the suggested deadline.
+3. **Suspends** the workflow (`Wait for Form Task and Resume`) until the lawyer responds: they confirm the deadline in days and choose a decision (*confirm*, *adjust* or *no deadline*).
+4. Logs the answer in the tracker with source "Advogado (Action Center)", date and time.
+5. Marks the transaction as successful (`Set Transaction Status`).
 
-## Tecnologias
+## Tech stack
 
-UiPath Studio 25.10 · Orchestrator (Queues) · Action Center (Form Tasks, Persistence) · Excel Activities · VB.NET expressions · padrão Dispatcher/Performer · long-running workflow
+UiPath Studio 25.10 · Orchestrator Queues · Action Center (Form Tasks, Persistence) · Excel Activities · VB.NET expressions · Dispatcher/Performer pattern · long-running workflows
 
-## Como rodar
+## How to run
 
-1. Abra cada projeto (`Dispatcher` e `Performer`) no UiPath Studio.
-2. No Orchestrator, crie a fila **`Fila_Prazos_Juridico`** e habilite o Action Center no seu tenant.
-3. Os dados de exemplo estão em `/Data`. São **fictícios**, inclusive os números de processo:
-   - `publicacoes_dje_exemplo.xlsx`: entrada do Dispatcher;
-   - `Controle_Prazos.xlsx`: saída (aba `Prazos`).
-4. Rode o **Dispatcher**: os prazos não críticos vão para o controle e os críticos vão para a fila.
-5. Publique e rode o **Performer** pelo Orchestrator. As tarefas aparecem no Action Center. Ao responder, o robô retoma e grava a decisão.
+1. Open each project (`Dispatcher` and `Performer`) in UiPath Studio.
+2. In Orchestrator, create the **`Fila_Prazos_Juridico`** queue and make sure Action Center is enabled on your tenant.
+3. Sample data lives in `/Data` and is **entirely fictitious**, including the case numbers:
+   - `publicacoes_dje_exemplo.xlsx`: Dispatcher input;
+   - `Controle_Prazos.xlsx`: output (`Prazos` sheet).
+4. Run the **Dispatcher**. Non-critical deadlines go to the tracker and critical ones go to the queue.
+5. Run the **Performer** (from Studio, or from Orchestrator with an unattended robot). Tasks appear in Action Center. Once the lawyer submits the form, the robot resumes and records the decision.
 
-## Demonstração
+> Sheet names, column names, the queue name and the form labels are in Portuguese on purpose: the automation is built for Brazilian courts and legal teams.
 
-**1. Processos Dispatcher e Performer publicados no Orchestrator**
+## Demo
 
-![Processos publicados no Orchestrator](docs/orchestrator-processos.png)
+**1. Dispatcher and Performer processes published in Orchestrator**
 
-**2. Fila `Fila_Prazos_Juridico`: as publicações críticas aguardando o Performer**
+![Processes published in Orchestrator](docs/orchestrator-processos.png)
 
-![Fila no Orchestrator](docs/orchestrator-fila.png)
+**2. `Fila_Prazos_Juridico` queue: critical publications waiting for the Performer**
 
-**3. Tarefa no Action Center: o advogado confirma o prazo e registra a decisão**
+![Orchestrator queue](docs/orchestrator-fila.png)
 
-![Tarefa de confirmação no Action Center](docs/action-center.png)
+**3. Action Center task: the lawyer confirms the deadline and records a decision**
 
-**4. Resultado no Controle de Prazos: registros automáticos do robô e confirmados pelo advogado**
+![Deadline confirmation task in Action Center](docs/action-center.png)
 
-![Planilha de controle de prazos](docs/controle-prazos.png)
+**4. Result in the deadline tracker: entries logged automatically by the robot and confirmed by the lawyer**
 
-## Próximos passos
+![Deadline tracker spreadsheet](docs/controle-prazos.png)
 
-- Ler as publicações direto do DJe ou de um serviço de push em vez da planilha.
-- Usar um LLM para classificar o tipo de ato e sugerir o prazo, com o advogado mantendo a decisão final.
-- Contar prazos em dias úteis com feriados forenses.
-- Notificar por e-mail os prazos próximos do vencimento.
+## Next steps
 
----
-
-<a id="english"></a>
-# Legal Deadline Monitor with Human-in-the-Loop (UiPath)
-
-A UiPath automation that reads court publications from Brazil's electronic Official Gazette (DJe), **resolves routine deadlines on its own and sends only the critical ones to a lawyer for confirmation** in UiPath Action Center before recording them.
-
-**Architecture:** Dispatcher/Performer with an Orchestrator queue.
-- **Dispatcher** reads the publications. Non-critical deadlines are written straight to the deadline tracker. Critical ones are pushed to the `Fila_Prazos_Juridico` queue.
-- **Performer** takes each queue item and creates an Action Center Form Task. The long-running workflow pauses until the lawyer confirms or adjusts the deadline and records a decision. It then logs the result with source, date and time, and closes the transaction.
-
-**Why it matters:** the robot handles the repetitive reading and data entry, while legally risky decisions stay with a person. This makes automation safe for a domain where one missed deadline can lose a case.
-
-**Stack:** UiPath Studio 25.10, Orchestrator Queues, Action Center (Form Tasks / Persistence), Excel Activities, VB.NET expressions.
-
-All sample data in `/Data` is fictitious.
+- Pull publications straight from the DJe or a push service instead of a workbook.
+- Use an LLM to classify the type of court act and suggest the deadline, with the lawyer keeping the final decision.
+- Count deadlines in business days, including court holidays.
+- Send email alerts for deadlines that are about to expire.
 
 ---
 
-**Autor / Author:** Caio Bandeira · [LinkedIn](https://linkedin.com/in/caio-bandeira-cv) · [GitHub](https://github.com/CaioBandeira7)
+**Author:** Caio Bandeira · [LinkedIn](https://linkedin.com/in/caio-bandeira-cv) · [GitHub](https://github.com/CaioBandeira7)

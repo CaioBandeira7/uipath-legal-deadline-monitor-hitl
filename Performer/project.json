@@ -1,7 +1,7 @@
 {
   "name": "Juridico_MonitorPrazos_Performer",
   "projectId": "2a20ddd7-7f3d-42fa-a1be-098f3eccecb2",
-  "description": "Consome a fila e pede confirmação do advogado no Action Center (human-in-the-loop)",
+  "description": "Consumes the queue and asks a lawyer to confirm each critical deadline in Action Center (human-in-the-loop)",
   "main": "Main.xaml",
   "dependencies": {
     "UiPath.Excel.Activities": "[3.4.1]",
