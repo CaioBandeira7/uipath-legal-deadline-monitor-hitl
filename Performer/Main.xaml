@@ -1,0 +1,177 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upaf="clr-namespace:UiPath.Persistence.Activities.FormTask;assembly=UiPath.Persistence.Activities" xmlns:upat="clr-namespace:UiPath.Persistence.Activities.Tasks;assembly=UiPath.Persistence.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Persistence.Activities.Model.TaskTimer</x:String>
+      <x:String>UiPath.Persistence.Activities.Tasks</x:String>
+      <x:String>UiPath.Persistence.Activities.Model.Task</x:String>
+      <x:String>UiPath.Persistence.Activities.FormTask</x:String>
+      <x:String>UiPath.Persistence.Activities.BaseTask</x:String>
+      <x:String>UiPath.Persistence.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>UiPath.Persistence.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="551,2246" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:QueueItem" Name="itemFila" />
+      <Variable x:TypeArguments="x:String" Name="numeroProcesso" />
+      <Variable x:TypeArguments="x:String" Name="trechoPublicacao" />
+      <Variable x:TypeArguments="x:String" Name="idPublicacao" />
+      <Variable x:TypeArguments="x:String" Name="prazoDias" />
+      <Variable x:TypeArguments="x:String" Name="prazoConfirmadoDias" />
+      <Variable x:TypeArguments="x:String" Name="decisaoAdvogado" />
+      <Variable x:TypeArguments="upaf:FormTaskData" Name="tarefaCriada" />
+      <Variable x:TypeArguments="x:String" Name="acaoTarefa" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtControlePrazos" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:GetQueueItem ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Get Transaction Item" sap:VirtualizedContainerService.HintSize="450,176" sap2010:WorkflowViewState.IdRef="GetQueueItem_1" QueueType="Fila_Prazos_Juridico" TransactionItem="[itemFila]" />
+    <Assign sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[numeroProcesso]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[itemFila.SpecificContent("Numero_Processo").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[trechoPublicacao]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[itemFila.SpecificContent("Trecho_Publicacao").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[idPublicacao]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[itemFila.SpecificContent("ID_Publicacao").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[prazoDias]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[itemFila.SpecificContent("Prazo_Calculado_Dias").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:BuildDataTable DataTable="[dtControlePrazos]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="450,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;ID_Publicacao&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Numero_Processo&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Origem&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Prazo_Final_Dias&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Decisao&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Data_Processamento&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;ID_Publicacao /&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
+    <upaf:CreateFormTask AssignmentCriteria="{x:Reference __ReferenceID0}" AutoCompleteOutcome="{x:Null}" BucketFolderPath="{x:Null}" BucketName="{x:Null}" BulkFormLayout="{x:Null}" DynamicFormPath="{x:Null}" ExternalTag="{x:Null}" Group="{x:Null}" Labels="{x:Null}" ReassignGroup="{x:Null}" ReassignUser="{x:Null}" TaskCatalog="{x:Null}" TimeoutMs="{x:Null}" TimerDuration="{x:Null}" UserNameOrEmail="{x:Null}" BulkFormLayoutGuid="3a1c489b-1861-4b3b-9609-586255d739cc" DisplayName="Create Form Task" EnableBulkEdit="False" EnableDynamicForms="False" EnableV2="True" EndCriteria="TaskAssigned" FormLayout="%[{&quot;mask&quot;:false,&quot;customClass&quot;:&quot;uipath-button-container&quot;,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;table&quot;,&quot;input&quot;:false,&quot;key&quot;:&quot;key&quot;,&quot;label&quot;:&quot;label&quot;,&quot;rows&quot;:[[{&quot;components&quot;:[{&quot;type&quot;:&quot;button&quot;,&quot;label&quot;:&quot;Enviar&quot;,&quot;key&quot;:&quot;submit&quot;,&quot;disableOnInvalid&quot;:true,&quot;input&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;tableView&quot;:true}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Número do Processo&quot;,&quot;disabled&quot;:true,&quot;tableView&quot;:true,&quot;key&quot;:&quot;numero_processo&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Trecho da Publicação&quot;,&quot;disabled&quot;:true,&quot;tableView&quot;:true,&quot;key&quot;:&quot;trecho_publicacao&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Confirme o prazo em dias&quot;,&quot;tableView&quot;:true,&quot;key&quot;:&quot;prazo_confirmado&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Decisão (ex: Confirmar prazo / Ajustar prazo / Não abre prazo)&quot;,&quot;tableView&quot;:true,&quot;key&quot;:&quot;decisao_advogado&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true}]},{&quot;components&quot;:[]}]],&quot;numRows&quot;:1,&quot;numCols&quot;:6,&quot;reorder&quot;:false}]" FormLayoutGuid="911243fd-acbb-46e3-8e7c-b005e1abeeec" GenerateInputFields="True" sap:VirtualizedContainerService.HintSize="450,343" sap2010:WorkflowViewState.IdRef="CreateFormTask_1" Outcome="Notify" StartCriteria="TaskCreated" TaskOutput="[tarefaCriada]" TaskPriority="Medium" TaskTimerEnabled="False" TaskTitle="[&quot;Confirmação de prazo - &quot; + idPublicacao]">
+      <upaf:CreateFormTask.FormData>
+        <InArgument x:TypeArguments="x:String" x:Key="numero_processo">[numeroProcesso]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="trecho_publicacao">[trechoPublicacao]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="prazo_confirmado">[prazoConfirmadoDias]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="decisao_advogado">[decisaoAdvogado]</OutArgument>
+      </upaf:CreateFormTask.FormData>
+      <upaf:CreateFormTask.ReassignCriteria>
+        <upat:Criteria x:Name="__ReferenceID0" Description="SingleUserDescription" Id="SingleUser" Name="Activity_AssignTasks_AssignmentCriteria_SingleUserName" />
+      </upaf:CreateFormTask.ReassignCriteria>
+    </upaf:CreateFormTask>
+    <upaf:WaitForFormTaskAndResume StatusMessage="{x:Null}" TaskOutput="{x:Null}" TimeoutMs="{x:Null}" WaitItemDataObject="{x:Null}" DisplayName="Wait for Form Task and Resume" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="WaitForFormTaskAndResume_1" TaskAction="[acaoTarefa]" TaskInput="[tarefaCriada]" />
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="450,123" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Advogado respondeu -&gt; Decisão: &quot; + decisaoAdvogado + &quot; | Prazo confirmado: &quot; + prazoConfirmadoDias + &quot; dias (Publicação &quot; + idPublicacao + &quot;)&quot;]" />
+    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{idPublicacao, numeroProcesso, &quot;Advogado (Action Center)&quot;, prazoConfirmadoDias, decisaoAdvogado, DateTime.Now.ToString(&quot;dd/MM/yyyy HH:mm&quot;)}]" DataTable="[dtControlePrazos]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="450,221" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+    <ui:AppendRange DataTable="[dtControlePrazos]" DisplayName="Append Range Workbook" sap:VirtualizedContainerService.HintSize="450,227" sap2010:WorkflowViewState.IdRef="AppendRange_1" SheetName="Prazos" WorkbookPath="..\Data\Controle_Prazos.xlsx" />
+    <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="450,166" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_1" Status="Successful" TransactionItem="[itemFila]">
+      <ui:SetTransactionStatus.Analytics>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+      </ui:SetTransactionStatus.Analytics>
+      <ui:SetTransactionStatus.Output>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+      </ui:SetTransactionStatus.Output>
+    </ui:SetTransactionStatus>
+  </Sequence>
+</Activity>

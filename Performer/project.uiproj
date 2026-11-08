@@ -1,0 +1,6 @@
+{
+  "Name": "Juridico_MonitorPrazos_Performer",
+  "ProjectType": "Process",
+  "Description": "Consome a fila e pede confirmação do advogado no Action Center (human-in-the-loop)",
+  "MainFile": "Main.xaml"
+}
