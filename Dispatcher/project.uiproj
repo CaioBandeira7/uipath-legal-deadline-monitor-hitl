@@ -1,0 +1,6 @@
+{
+  "Name": "Juridico_MonitorPrazos_Dispatcher",
+  "ProjectType": "Process",
+  "Description": "Lê publicações do DJe, resolve prazos não críticos automaticamente e envia os críticos para a fila",
+  "MainFile": "Main.xaml"
+}
